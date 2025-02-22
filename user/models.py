@@ -43,6 +43,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.name
 
+    class Meta:
+        db_table = 'users'
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User,
@@ -53,6 +56,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'profile for {self.user.name}'
+
+    class Meta:
+        db_table = 'profile'
 
 
 @receiver(post_save, sender=User)
